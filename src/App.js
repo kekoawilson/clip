@@ -18,7 +18,8 @@ class App extends Component {
         { id: 'ab128cc', name: 'Skiing' },
         { id: 'ab129dd', name: 'Ping Pong' },
         { id: 'ab130cc', name: 'Foosball' },
-      ]
+      ],
+      emptyStr: "Oh no, you deleted all the sports :("
     }
     this.baseState = this.state
     this.deleteItem = this.deleteItem.bind(this)
@@ -37,9 +38,9 @@ class App extends Component {
   }
 
   render() {
-    const { sports } = this.state
+    const { sports, emptyStr } = this.state
     const displaySports = sports.map((e, i) => {
-      return <h4 key={e.id} onClick={() => this.deleteItem(e)} >{e.name}</h4>
+      return <h4 key={e.id} onClick={() => this.deleteItem(e)} >{i+1} {e.name}</h4>
     })
 
     return (
@@ -53,9 +54,11 @@ class App extends Component {
         {/* Section Two */}
         <ReactCSSTransitionGroup
           transitionName="fade"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
           transitionEnterTimeout={500}
           transitionLeaveTimeout={200}>
-          {displaySports && displaySports[0] ? displaySports : <h3>"Oh no, you deleted all the sports :("</h3>}
+          {displaySports && displaySports[0] ? displaySports : <h3>{emptyStr}</h3>}
         </ReactCSSTransitionGroup>
         {/* Section Three */}
         <Button color='black' onClick={this.resetList} >Reset List</Button>

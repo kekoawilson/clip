@@ -18,6 +18,7 @@ class App extends Component {
         { id: 'ab128cc', name: 'Skiing' },
         { id: 'ab129dd', name: 'Ping Pong' },
         { id: 'ab130cc', name: 'Foosball' },
+        { id: 'ab130cd', name: 'Basketball' },
       ],
       emptyStr: "Oh no, you deleted all the sports :("
     }
@@ -27,7 +28,6 @@ class App extends Component {
 
 
   deleteItem(sport) {
-    let newArr = []
     this.setState({
       sports: this.state.sports.filter(e => e !== sport)
     })
